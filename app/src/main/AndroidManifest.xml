@@ -32,6 +32,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.fumiya.homeconrtoller.MainActivity" />
         </activity>
+        <activity android:name=".LightOnActivity" />
+        <activity android:name=".LightOffActivity" />
+        <activity android:name=".TVPowerActivity"></activity>
     </application>
 
 </manifest>

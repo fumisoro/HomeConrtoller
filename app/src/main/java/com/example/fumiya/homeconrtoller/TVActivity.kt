@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import com.github.kittinunf.fuel.Fuel
+import com.github.kittinunf.fuel.core.FuelManager
 
 import kotlinx.android.synthetic.main.activity_tv.*
 
@@ -14,6 +15,8 @@ class TVActivity : AppCompatActivity() {
         setContentView(R.layout.activity_tv)
         setSupportActionBar(toolbar)
 
+        FuelManager.instance.baseHeaders = mapOf("Content-Type" to "application/json")
+        FuelManager.instance.basePath = "https://hooks.slack.com"
         findViewById(R.id.tvPowerButton).setOnClickListener {v -> postToSlack("{\"text\":\"テレビ電源\"}")}
         findViewById(R.id.tvChannelNextButton).setOnClickListener {v -> postToSlack("{\"text\":\"チャンネル次\"}")}
         findViewById(R.id.tvChannelPrevButton).setOnClickListener {v -> postToSlack("{\"text\":\"チャンネル前\"}")}

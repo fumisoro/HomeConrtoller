@@ -24,19 +24,28 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val intent = Intent(applicationContext, TVActivity::class.java)
-        val pendingIntent = PendingIntent.getActivity(
-                this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        val tvIntent = Intent(applicationContext, TVActivity::class.java)
+        val tvPendingIntent = PendingIntent.getActivity(
+                this, 0, tvIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+        val lightOnIntent = Intent(applicationContext, LightOnActivity::class.java)
+        val lightOnPendingIntent = PendingIntent.getActivity(
+                this, 0, lightOnIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+        val lightOffIntent = Intent(applicationContext, LightOffActivity::class.java)
+        val lightOffPendingIntent = PendingIntent.getActivity(
+                this, 0, lightOffIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+        val tvPowerIntent = Intent(applicationContext, TVPowerActivity::class.java)
+        val tvPowerPendingIntent = PendingIntent.getActivity(
+                this, 0, tvPowerIntent, PendingIntent.FLAG_UPDATE_CURRENT)
         val notification = NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.abc_btn_switch_to_on_mtrl_00001)
-                .setContentText("内容")
-                .setContentTitle("タイトル")
-                .setContentInfo("通知欄")
+                .setContentText("出先で間違って押さないように！！")
+                .setContentTitle("おうち操作")
+                .setContentInfo("(^o^)")
                 .setTicker("通知概要")
-                .setContentIntent(pendingIntent)
-                .addAction(R.drawable.abc_spinner_mtrl_am_alpha, "tv", pendingIntent)
-                .addAction(R.drawable.abc_ic_star_black_16dp, "電on", pendingIntent)
-                .addAction(R.drawable.abc_ic_arrow_drop_right_black_24dp, "電off", pendingIntent)
+                .addAction(R.drawable.abc_spinner_mtrl_am_alpha, "tv", tvPowerPendingIntent)
+                .addAction(R.drawable.abc_ic_star_black_16dp, "電on", lightOnPendingIntent)
+                .addAction(R.drawable.abc_ic_star_black_16dp, "電off", lightOffPendingIntent)
+
 
         val manager = getSystemService(Service.NOTIFICATION_SERVICE) as NotificationManager
         manager.notify(0, notification.build())
